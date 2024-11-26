@@ -1,0 +1,134 @@
+/* General styling for the login container */
+.login-form {
+  background: rgba(249, 249, 249, 0.9); /* Transparent white background */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.login-form:hover {
+  transform: scale(1.05);
+}
+
+h3.login-heading {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.alert {
+  background-color: #f44336; /* Red background for error */
+  color: white;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #007bff; /* Blue border on focus */
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Glow effect */
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.checkbox-input {
+  margin-right: 10px;
+}
+
+.checkbox-label {
+  font-size: 14px;
+  color: #555;
+}
+
+.button-submit {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button-submit:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+.button-submit:hover:enabled {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.forgot-password, .register-link {
+  text-align: center;
+  font-size: 14px;
+}
+
+.forgot-password a, .register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password a:hover, .register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Styling for the Google login button */
+.google-login-group {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.google-login-group .google-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  background-color: #4285f4; /* Google blue color */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.google-login-group .google-button:hover {
+  background-color: #357ae8;
+  transform: translateY(-2px);
+}
+
+.google-login-group .google-button:focus {
+  outline: none;
+}
