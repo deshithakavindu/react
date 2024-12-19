@@ -7,6 +7,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
+  const [selectedImageId, setSelectedImageId] = useState("");
 
   // Fetch images when the component mounts
   useEffect(() => {
@@ -96,10 +97,12 @@ const HomePage = () => {
   };
 
   // Handle modal logic
-  const handleImageClick = (imageSrc) => {
+  const handleImageClick = (imageSrc, imageId) => {
     setSelectedImage(imageSrc);
+    setSelectedImageId(imageId);
     setShowModal(true);
   };
+
   const closeModal = () => setShowModal(false);
 
   // Handle image download
@@ -108,6 +111,36 @@ const HomePage = () => {
     link.href = selectedImage;
     link.download = "image.jpg"; // Use file-specific names if available
     link.click();
+  };
+
+  // Handle image deletion
+  const handleDeleteImage = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setUploadStatus("Unauthorized. Please log in.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5000/delete-image/${selectedImageId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const result = await response.json();
+      if (result.status === "ok") {
+        setUploadStatus("Image deleted successfully!");
+        fetchImages(); // Refresh the image list after deletion
+        closeModal(); // Close the modal after deletion
+      } else {
+        setUploadStatus("Failed to delete image.");
+      }
+    } catch (error) {
+      console.error("Error deleting image:", error);
+      setUploadStatus(error.message || "An error occurred while deleting image.");
+    }
   };
 
   return (
@@ -135,7 +168,7 @@ const HomePage = () => {
                   <div
                     key={index}
                     className="image-card"
-                    onClick={() => handleImageClick(`data:image/jpeg;base64,${image.image}`)}
+                    onClick={() => handleImageClick(`data:image/jpeg;base64,${image.image}`, image._id)}
                   >
                     <img
                       src={`data:image/jpeg;base64,${image.image}`}
@@ -161,6 +194,7 @@ const HomePage = () => {
             <img src={selectedImage} alt="Full View" className="full-image" />
             <button onClick={closeModal}>Close</button>
             <button onClick={handleImageDownload}>Download</button>
+            <button onClick={handleDeleteImage}>Delete</button>
           </div>
         </div>
       )}

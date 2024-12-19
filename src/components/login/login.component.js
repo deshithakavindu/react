@@ -61,7 +61,7 @@ export default class Login extends Component {
           if (userData.data.userType === "admin") {
             window.location.href = "./admin";
           } else {
-            window.location.href = "./home";
+            window.location.href = "./all";
           }
         }
       } else {
@@ -137,7 +137,7 @@ export default class Login extends Component {
         </div>
 
         <p className="forgot-password">
-          Forgot <a href="#">password?</a>
+          Forgot <a href="/forgot">password?</a>
         </p>
 
         <p className="register-link">

@@ -1,0 +1,106 @@
+/* General Styles */
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 50px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.card {
+  width: 250px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out, box-shadow 0.3s ease;
+  position: relative;
+  perspective: 1000px;
+}
+
+.card h2 {
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.card p {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 0 20px;
+  color: #555;
+}
+
+/* Hover Effects and Animations */
+.card:hover {
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover h2 {
+  color: #4CAF50;
+  transition: color 0.3s ease;
+}
+
+.card:hover p {
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+/* Flip Animation */
+.card .card-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backface-visibility: hidden;
+  transition: transform 0.5s ease;
+}
+
+.card .card-back {
+  transform: rotateY(180deg);
+  background-color: #f1f1f1;
+}
+
+.card:hover .card-content {
+  transform: rotateY(180deg);
+}
+
+.card .card-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+/* Animating Card Titles */
+.card h2 {
+  font-size: 22px;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 0.5s forwards 0.3s;
+}
+
+.card p {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards 0.5s;
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
